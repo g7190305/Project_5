@@ -1,0 +1,9 @@
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/classes/debug
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/pre-dexed/debug/codepath-utils-1542936757c5a0655629f5c686efca52e05e456c.jar
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/pre-dexed/debug/codepath-android-view-helpers-0.1.0-9e07fd046a0116de25b3039eedbf8a662b800143.jar
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/pre-dexed/debug/codepath-oauth-0.2.3-651f6290dada4d6639ba310efd44e8442d00e552.jar
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.3-f73e8e48b2057c7c4d4163b139fbc2bd3baa19e2.jar
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.8.4-1ffb9e9df77dd91d439e3127aa09baea88b9dfbc.jar
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/pre-dexed/debug/scribe-185326d3777f076254a68f0b04f5053b97f86682.jar
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/pre-dexed/debug/androidjhlabs-409d9c338b700faf6450c5c97208e1ec0dcc46b0.jar
+/Users/g7190305/AndroidBootCamp/Project_5/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-7869aa51e9fd7f6bc7f3af135b6dd0236d593044.jar
