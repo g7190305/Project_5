@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.codepath.apps.tumblrsnap.PhotosAdapter;
 import com.codepath.apps.tumblrsnap.R;
@@ -103,6 +102,11 @@ public class PhotosFragment extends Fragment {
 			case R.id.action_use_existing:
 			{
 				// Take the user to the gallery app
+				// Create intent for picking a photo from the gallery
+				Intent intent = new Intent(Intent.ACTION_PICK,
+						MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				// Bring up gallery to select a photo
+				startActivityForResult(intent, PICK_PHOTO_CODE);
 			}
 			break;
 		}
@@ -114,22 +118,29 @@ public class PhotosFragment extends Fragment {
 		if (resultCode == Activity.RESULT_OK) {
 			if (requestCode == TAKE_PHOTO_CODE) {
 				// Extract the photo that was just taken by the camera
-				if (resultCode == getActivity().RESULT_OK) {
-					Uri takenPhotoUri = getPhotoFileUri(photoFileName);
+				Uri takenPhotoUri = getPhotoFileUri(photoFileName);
 
-					cropPhoto(takenPhotoUri);
-					// by this point we have the camera photo on disk
-					// Bitmap takenImage = BitmapFactory.decodeFile(takenPhotoUri.getPath());
-					// Load the taken image into a preview
-					// ImageView ivPreview = (ImageView) getActivity().findViewById(R.id.ivPreview);
-					// ivPreview.setImageBitmap(takenImage);
-				} else { // Result was a failure
-					Toast.makeText(getActivity(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-				}
 				// Call the method below to trigger the cropping
+				cropPhoto(takenPhotoUri);
+
 				// cropPhoto(photoUri)
 			} else if (requestCode == PICK_PHOTO_CODE) {
 				// Extract the photo that was just picked from the gallery
+				if (data != null) {
+					Uri photoUri = data.getData();
+					// Do something with the photo based on Uri
+					// Bitmap selectedImage = null;
+					// try {
+					// 	selectedImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
+					// } catch (IOException e) {
+					// 	e.printStackTrace();
+					// }
+					// Load the selected image into a preview
+					//  ImageView ivPreview = (ImageView) getActivity().findViewById(R.id.ivPreview);
+					// ivPreview.setImageBitmap(selectedImage);
+
+					cropPhoto(photoUri);
+				}
 				
 				// Call the method below to trigger the cropping
 				// cropPhoto(photoUri)
