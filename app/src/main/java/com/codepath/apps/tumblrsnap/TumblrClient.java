@@ -14,6 +14,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class TumblrClient extends OAuthBaseClient {
     public static final Class<? extends Api> REST_API_CLASS = TumblrApi.class;
@@ -59,16 +61,25 @@ public class TumblrClient extends OAuthBaseClient {
     	client.post(getApiUrl(String.format("blog/%s/post?type=photo&tags=cptumblrsnap", blog)), params, handler);
     }
       
-    public void createPhotoPost(String blog, Bitmap bitmap, final AsyncHttpResponseHandler handler) {   
+    public void createPhotoPost(String blog, Bitmap bitmap, String comment, final AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
     	params.put("type", "photo");
-    	params.put("tags", "cptumblrsnap");
-    	
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    	// params.put("tags", "cptumblrsnap");
+    	params.put("tags", comment);
+
+        String encodedComment = "";
+
+        try {
+            encodedComment = URLEncoder.encode(comment, "UTF-8").toString();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         final byte[] bytes = stream.toByteArray();
     	params.put("data", new ByteArrayInputStream(bytes), "image.png");
     	
-    	client.post(getApiUrl(String.format("blog/%s/post?type=photo&tags=cptumblrsnap", blog)), params, handler);
+    	client.post(getApiUrl(String.format("blog/%s/post?type=photo&tags=%s", blog, encodedComment)), params, handler);
     }
 }

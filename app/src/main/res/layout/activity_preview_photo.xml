@@ -15,4 +15,31 @@
         android:layout_marginTop="20dp"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comment"
+        android:id="@+id/tvComment"
+        android:layout_below="@+id/ivPreview"
+        android:layout_alignLeft="@+id/ivPreview"
+        android:layout_alignStart="@+id/ivPreview"
+        android:layout_marginTop="20dp"
+        android:textColor="#f2f2f2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/etComment"
+        android:layout_below="@+id/tvComment"
+        android:layout_alignLeft="@+id/tvComment"
+        android:layout_alignStart="@+id/tvComment"
+        android:text="Comment"
+        android:layout_alignRight="@+id/ivPreview"
+        android:lines="3"
+        android:textColor="#2f2f2f"
+        android:visibility="visible"
+        android:background="#f2f2f2" />
+
 </RelativeLayout>

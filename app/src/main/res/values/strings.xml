@@ -12,5 +12,6 @@
     </string-array>
 
     <string name="title_activity_preview_photo">PreviewPhotoActivity</string>
+    <string name="comment_on_photo">comment on photo</string>
 
 </resources>
