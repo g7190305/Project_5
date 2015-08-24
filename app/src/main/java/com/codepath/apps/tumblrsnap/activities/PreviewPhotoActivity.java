@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.codepath.apps.tumblrsnap.ImageFilterProcessor;
@@ -21,7 +20,7 @@ public class PreviewPhotoActivity extends FragmentActivity {
 	private SimpleProgressDialog dialog;
 	private ImageView ivPreview;
 	private ImageFilterProcessor filterProcessor;
-	private EditText etComment;
+	// private EditText etComment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +29,14 @@ public class PreviewPhotoActivity extends FragmentActivity {
 		ivPreview = (ImageView) findViewById(R.id.ivPreview);
 		photoBitmap = getIntent().getParcelableExtra("photo_bitmap");
 		filterProcessor = new ImageFilterProcessor(photoBitmap);
-		etComment = (EditText) findViewById(R.id.etComment);
+		// etComment = (EditText) findViewById(R.id.etComment);
 		redisplayPreview(ImageFilterProcessor.NONE);
 	}
 	
 	private void redisplayPreview(int effectId) {
         processedBitmap = filterProcessor.applyFilter(effectId);
         ivPreview.setImageBitmap(processedBitmap);
-		etComment.setText(getString(R.string.comment_on_photo));
+		// etComment.setText(getString(R.string.comment_on_photo));
 	}
 
 
@@ -88,7 +87,7 @@ public class PreviewPhotoActivity extends FragmentActivity {
 		dialog.show();
 		
 		TumblrClient client = ((TumblrClient) TumblrClient.getInstance(TumblrClient.class, this));
-		client.createPhotoPost(User.currentUser().getBlogHostname(), processedBitmap, etComment.getText().toString(), new AsyncHttpResponseHandler() {
+		client.createPhotoPost(User.currentUser().getBlogHostname(), processedBitmap, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int arg0, String arg1) {
 				dialog.dismiss();

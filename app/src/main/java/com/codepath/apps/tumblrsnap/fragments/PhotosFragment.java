@@ -201,6 +201,27 @@ public class PhotosFragment extends Fragment {
 			}
 		});
 	}
+
+	private void reloadUserPhotos() {
+		client.getUserPhotos(new JsonHttpResponseHandler() {
+			@Override
+			public void onSuccess(int code, JSONObject response) {
+				try {
+					JSONArray photosJson = response.getJSONObject("response").getJSONArray("posts");
+					photosAdapter.clear();
+					photosAdapter.addAll(Photo.fromJson(photosJson));
+					mergeUserPhotos(); // bring in user photos
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				Log.d("DEBUG", arg0.toString());
+			}
+		});
+	}
 	
 	private void cropPhoto(Uri photoUri) {
 		//call the standard crop action intent (the user device may not support it)

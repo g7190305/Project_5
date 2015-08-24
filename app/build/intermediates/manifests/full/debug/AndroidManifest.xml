@@ -37,7 +37,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="tumblrsnap"
+                    android:host="g7190305_tumblrSnap"
                     android:scheme="oauth" />
             </intent-filter>
         </activity>

@@ -14,15 +14,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 public class TumblrClient extends OAuthBaseClient {
     public static final Class<? extends Api> REST_API_CLASS = TumblrApi.class;
     public static final String REST_URL = "http://api.tumblr.com/v2";
-    public static final String REST_CONSUMER_KEY = "BcnUeYPIxBaVCz5sYcs4SkytRqM8azgLclb1PUpeFcknic9RYY";
-    public static final String REST_CONSUMER_SECRET = "FoiHHbknPRFeyiaBpOxizSGzbYsflp6DiFfwBi85kCYEznKGGh";
-    public static final String REST_CALLBACK_URL = "oauth://tumblrsnap";
+    public static final String REST_CONSUMER_KEY = "WkVYh3uAFLLV6VjxbAH68rrtZqgbPKp6NgDIeGhIdMkTLUdUbE";
+    public static final String REST_CONSUMER_SECRET = "E7sDdwZyeDWVo0G5hzsNFXsCwRM4O7pFxiXAFjiFv5D0wIBhwE";
+    public static final String REST_CALLBACK_URL = "oauth://g7190305_tumblrSnap";
 
     public TumblrClient(Context context) {
         super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY,
@@ -61,25 +59,30 @@ public class TumblrClient extends OAuthBaseClient {
     	client.post(getApiUrl(String.format("blog/%s/post?type=photo&tags=cptumblrsnap", blog)), params, handler);
     }
       
-    public void createPhotoPost(String blog, Bitmap bitmap, String comment, final AsyncHttpResponseHandler handler) {
+    public void createPhotoPost(String blog, Bitmap bitmap, final AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
-    	params.put("type", "photo");
-    	// params.put("tags", "cptumblrsnap");
-    	params.put("tags", comment);
+        // JSONArray tags = new JSONArray("cptumblrsnap");
+        // String[] tags = new String[2];
+        params.put("type", "photo");
+    	params.put("tags", "cptumblrsnap");
+    	// params.put("tags", comment);
+        // String encodedComment = "";
 
-        String encodedComment = "";
+        // tags[0] = "cptumblrsnap";
+        // tags[1] = comment;
 
-        try {
-            encodedComment = URLEncoder.encode(comment, "UTF-8").toString();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     encodedComment = URLEncoder.encode(comment, "UTF-8").toString();
+        // } catch (UnsupportedEncodingException e) {
+        //     e.printStackTrace();
+        // }
+        // params.put("tags", String.valueOf(tags));
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         final byte[] bytes = stream.toByteArray();
     	params.put("data", new ByteArrayInputStream(bytes), "image.png");
     	
-    	client.post(getApiUrl(String.format("blog/%s/post?type=photo&tags=%s", blog, encodedComment)), params, handler);
+    	client.post(getApiUrl(String.format("blog/%s/post?type=photo&tags=cptumblrsnap", blog )), params, handler);
     }
 }

@@ -1,7 +1,5 @@
 package com.codepath.apps.tumblrsnap;
 
-import java.util.List;
-
 import android.content.Context;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -14,6 +12,8 @@ import android.widget.TextView;
 
 import com.codepath.apps.tumblrsnap.models.Photo;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.util.List;
 
 public class PhotosAdapter extends ArrayAdapter<Photo> {
 
@@ -38,6 +38,9 @@ public class PhotosAdapter extends ArrayAdapter<Photo> {
         TextView tvTimestamp = (TextView) view.findViewById(R.id.tvTimestamp);
         tvTimestamp.setText(DateUtils.getRelativeTimeSpanString(1000 * photo
                 .getTimestamp()));
+
+        TextView tvTags = (TextView) view.findViewById(R.id.tvTags);
+        tvTags.setText(photo.getTags());
 
         ImageView ivProfile = (ImageView) view.findViewById(R.id.ivProfile);
         ivProfile.setImageResource(android.R.color.transparent);

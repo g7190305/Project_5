@@ -42,4 +42,15 @@
         android:layout_centerHorizontal="true"
         android:scaleType="center" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvTags"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignLeft="@+id/ivPhoto"
+        android:layout_below="@+id/ivPhoto" />
+
 </RelativeLayout><!-- From: file:/Users/g7190305/AndroidBootCamp/Project_5/app/src/main/res/layout/photo_item.xml -->

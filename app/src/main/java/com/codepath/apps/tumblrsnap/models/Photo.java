@@ -1,10 +1,10 @@
 package com.codepath.apps.tumblrsnap.models;
 
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class Photo {
 	private String id;
@@ -13,6 +13,8 @@ public class Photo {
 	private String caption;
 	private JSONArray tagsArray;
 	private JSONArray photoArray;
+
+    private String tags;
 	
 	public String getId() {
 		return id;
@@ -29,6 +31,14 @@ public class Photo {
 	public String getCaption() {
 		return caption;
 	}
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 
 	public boolean isSnap() {
 		boolean isSnap = false;
