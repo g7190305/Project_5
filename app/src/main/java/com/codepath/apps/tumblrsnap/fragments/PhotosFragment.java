@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,6 +42,7 @@ public class PhotosFragment extends Fragment {
 	private static final int PICK_PHOTO_CODE = 2;
 	private static final int CROP_PHOTO_CODE = 3;
 	private static final int POST_PHOTO_CODE = 4;
+	private SwipeRefreshLayout swipeContainer;
 
 	public final String APP_TAG = "MyCustomApp";
 	public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
@@ -53,12 +55,39 @@ public class PhotosFragment extends Fragment {
 	ArrayList<Photo> photos;
 	PhotosAdapter photosAdapter;
 	ListView lvPhotos;
-	
-	@Override 
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_photos, container, false);
 		setHasOptionsMenu(true);
+
+		swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+		// Setup refresh listener which triggers new data loading
+		swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				// Your code to refresh the list here.
+				// Make sure you call swipeContainer.setRefreshing(false)
+				// once the network request has completed successfully.
+				reloadUserPhotos();
+				swipeContainer.setRefreshing(false);
+
+			}
+		});
+		// Configure the refreshing colors
+		swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+				android.R.color.holo_green_light,
+				android.R.color.holo_orange_light,
+				android.R.color.holo_red_light);
+
+
+
 		return view;
 	}
 	
@@ -77,7 +106,7 @@ public class PhotosFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		reloadPhotos();
+		reloadUserPhotos();
 	}
 
 	@Override
@@ -148,7 +177,7 @@ public class PhotosFragment extends Fragment {
 				photoBitmap = data.getParcelableExtra("data");
 				startPreviewPhotoActivity();
 			} else if (requestCode == POST_PHOTO_CODE) {
-				reloadPhotos();
+				reloadUserPhotos();
 			}
 		}
 	}
@@ -189,7 +218,7 @@ public class PhotosFragment extends Fragment {
 					JSONArray photosJson = response.getJSONArray("response");
 					photosAdapter.clear();
 					photosAdapter.addAll(Photo.fromJson(photosJson));
-					mergeUserPhotos(); // bring in user photos
+					// mergeUserPhotos(); // bring in user photos
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -210,7 +239,7 @@ public class PhotosFragment extends Fragment {
 					JSONArray photosJson = response.getJSONObject("response").getJSONArray("posts");
 					photosAdapter.clear();
 					photosAdapter.addAll(Photo.fromJson(photosJson));
-					mergeUserPhotos(); // bring in user photos
+					// mergeUserPhotos(); // bring in user photos
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

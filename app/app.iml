@@ -88,9 +88,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="codepath-oauth-0.2.3" level="project" />
     <orderEntry type="library" exported="" name="codepath-android-view-helpers-0.1.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-18.0.0" level="project" />
     <orderEntry type="library" exported="" name="codepath-utils" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="android-async-http-1.4.3" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="androidjhlabs" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.8.4" level="project" />
     <orderEntry type="library" exported="" name="scribe" level="project" />
